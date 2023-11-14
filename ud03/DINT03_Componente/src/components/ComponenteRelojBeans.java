@@ -13,13 +13,34 @@ public class ComponenteRelojBeans extends JLabel implements Serializable {
     private int hourAlarm;
     private int minutesAlarm;
     private Timer timer;
+    private DefinirAlarmaListener receptor;
 
     public ComponenteRelojBeans() {
-      actualizarHora(); //Se establece el texto inicial antes de iniciar el contador
+        actualizarHora(); //Se establece el texto inicial antes de iniciar el contador
         setEnableAlarm(true);
         setFormato24h(false);
-      timer = new Timer(1000, e -> actualizarHora());
-      timer.start();
+        añadirAlarma(new Alarma());
+        timer = new Timer(1000, e -> actualizarHora());
+        timer.start();
+    }
+
+    public void añadirAlarma(DefinirAlarmaListener receptor) {
+        this.receptor = receptor;
+    }
+
+    public void eliminarAlarma(DefinirAlarmaListener receptor) {
+        this.receptor = null;
+    }
+
+    private void actualizarHora() {
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato24h ? "HH:mm:ss" : "hh:mm:ss a");
+        setText(time.format(formatter));
+        if (enableAlarm && time.getHour() == hourAlarm && time.getMinute() == minutesAlarm) {
+            if (receptor != null) {
+                receptor.capturarAlarma(new DefinirAlarmaEvent(this));
+            }
+        }
     }
 
     //Getters y setters
@@ -54,13 +75,5 @@ public class ComponenteRelojBeans extends JLabel implements Serializable {
     public void setMinutesAlarm(int minutesAlarm) {
         this.minutesAlarm = minutesAlarm;
     }
-
-    private void actualizarHora() {
-        LocalTime time = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato24h ? "HH:mm:ss" : "hh:mm:ss a");
-        setText(time.format(formatter));
-    }
-
-
 
 }
