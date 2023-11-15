@@ -1,5 +1,7 @@
 package interfaces;
 
+import javax.swing.SpinnerNumberModel;
+
 public class UsandoComponente extends javax.swing.JFrame {
 
     /**
@@ -19,50 +21,39 @@ public class UsandoComponente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        componenteRelojBeans2 = new components.ComponenteRelojBeans();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        mainContainer = new javax.swing.JPanel();
         panelCrearAlarma = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        horaAlarma = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0, 23, 1));
         jLabel2 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        minutoAlarma = new javax.swing.JSpinner(new SpinnerNumberModel(0, 0, 59, 1));
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        componenteRelojBeans3 = new components.ComponenteRelojBeans();
+        switchFormatTime = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        componenteRelojBeans2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        componenteRelojBeans2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        componenteRelojBeans2.setHourAlarm(13);
-        componenteRelojBeans2.setMinutesAlarm(12);
-        getContentPane().add(componenteRelojBeans2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 400, 44));
-
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jRadioButton1.setText("Formato 24h");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 6, 141, 36));
+        mainContainer.setBackground(new java.awt.Color(255, 255, 255));
+        mainContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelCrearAlarma.setBackground(new java.awt.Color(255, 255, 255));
-        panelCrearAlarma.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        panelCrearAlarma.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelCrearAlarma.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Hora");
-        panelCrearAlarma.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 63, -1));
-        panelCrearAlarma.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        panelCrearAlarma.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 63, -1));
+        panelCrearAlarma.add(horaAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel2.setText("Minuto");
-        panelCrearAlarma.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 60, -1));
-        panelCrearAlarma.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
+        panelCrearAlarma.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 60, -1));
+        panelCrearAlarma.add(minutoAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Crear alarma");
-        panelCrearAlarma.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, -1));
+        panelCrearAlarma.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 160, -1));
 
         jButton1.setText("Añadir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,21 +61,48 @@ public class UsandoComponente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        panelCrearAlarma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, -1));
+        panelCrearAlarma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 100, -1));
 
-        getContentPane().add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 82, 200, 130));
+        mainContainer.add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 260, 120));
+
+        componenteRelojBeans3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        componenteRelojBeans3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        componenteRelojBeans3.setHourAlarm(13);
+        componenteRelojBeans3.setMinutesAlarm(31);
+        mainContainer.add(componenteRelojBeans3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 400, 30));
+
+        switchFormatTime.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        switchFormatTime.setText("Formato 24h");
+        switchFormatTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                switchFormatTimeActionPerformed(evt);
+            }
+        });
+        mainContainer.add(switchFormatTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 6, 141, 36));
+
+        getContentPane().add(mainContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-        componenteRelojBeans2.setFormato24h(!componenteRelojBeans2.isFormato24h());
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        int hora = (Integer) horaAlarma.getValue();
+        int minuto = (Integer) minutoAlarma.getValue();
+        if(hora >= 0 && hora <= 23 && minuto >= 0 && minuto <= 59){
+            System.out.println("Alarma creada");
+            componenteRelojBeans3.setEnableAlarm(true);
+            componenteRelojBeans3.setHourAlarm(hora);
+            componenteRelojBeans3.setMinutesAlarm(minuto);
+        }else{
+            System.out.println("El formato de hora introducido no es válido");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void switchFormatTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_switchFormatTimeActionPerformed
+        componenteRelojBeans3.setFormato24h(!componenteRelojBeans3.isFormato24h());
+    }//GEN-LAST:event_switchFormatTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,14 +140,15 @@ public class UsandoComponente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private components.ComponenteRelojBeans componenteRelojBeans2;
+    private components.ComponenteRelojBeans componenteRelojBeans3;
+    private javax.swing.JSpinner horaAlarma;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JPanel mainContainer;
+    private javax.swing.JSpinner minutoAlarma;
     private javax.swing.JPanel panelCrearAlarma;
+    private javax.swing.JRadioButton switchFormatTime;
     // End of variables declaration//GEN-END:variables
 }
