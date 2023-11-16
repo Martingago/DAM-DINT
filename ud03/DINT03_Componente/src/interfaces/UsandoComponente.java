@@ -1,5 +1,6 @@
 package interfaces;
 
+import components.Alarma;
 import javax.swing.SpinnerNumberModel;
 
 public class UsandoComponente extends javax.swing.JFrame {
@@ -63,7 +64,7 @@ public class UsandoComponente extends javax.swing.JFrame {
         });
         panelCrearAlarma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 100, -1));
 
-        mainContainer.add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 260, 120));
+        mainContainer.add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 260, 120));
 
         componenteRelojBeans3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         componenteRelojBeans3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -94,6 +95,10 @@ public class UsandoComponente extends javax.swing.JFrame {
             componenteRelojBeans3.setEnableAlarm(true);
             componenteRelojBeans3.setHourAlarm(hora);
             componenteRelojBeans3.setMinutesAlarm(minuto);
+            
+            //En caso de que una alarma haya sonado antes, deberemos crear un nuevo receptor
+            componenteRelojBeans3.addDefinirAlarmaListener(new Alarma());
+            
         }else{
             System.out.println("El formato de hora introducido no es válido");
         }

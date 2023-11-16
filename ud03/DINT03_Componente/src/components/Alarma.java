@@ -1,8 +1,12 @@
 package components;
 
+import javax.swing.JOptionPane;
+
 public class Alarma implements DefinirAlarmaListener {
     @Override
     public void capturarAlarma(DefinirAlarmaEvent ev) {
-        System.out.println("RIIIIIING RIIIIIIIIIIIIING");
+    JOptionPane.showMessageDialog(null, "RIIIIIIIING RIIIIIIIIIIIIIIIIIIIING", "Alarma",
+    JOptionPane.INFORMATION_MESSAGE);
+        
     }
 }
