@@ -1,6 +1,7 @@
 package interfaces;
 
-import components.Alarma;
+import components.DefinirAlarmaEvent;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class UsandoComponente extends javax.swing.JFrame {
@@ -64,13 +65,18 @@ public class UsandoComponente extends javax.swing.JFrame {
         });
         panelCrearAlarma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 100, -1));
 
-        mainContainer.add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 260, 120));
+        mainContainer.add(panelCrearAlarma, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 260, 140));
 
         componenteRelojBeans3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         componenteRelojBeans3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         componenteRelojBeans3.setHourAlarm(13);
         componenteRelojBeans3.setMinutesAlarm(31);
-        mainContainer.add(componenteRelojBeans3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 400, 30));
+        componenteRelojBeans3.addDefinirAlarmaListener(new components.DefinirAlarmaListener() {
+            public void capturarAlarma(components.DefinirAlarmaEvent evt) {
+                componenteRelojBeans3CapturarAlarma(evt);
+            }
+        });
+        mainContainer.add(componenteRelojBeans3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 30));
 
         switchFormatTime.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         switchFormatTime.setText("Formato 24h");
@@ -79,7 +85,7 @@ public class UsandoComponente extends javax.swing.JFrame {
                 switchFormatTimeActionPerformed(evt);
             }
         });
-        mainContainer.add(switchFormatTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 6, 141, 36));
+        mainContainer.add(switchFormatTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 141, 36));
 
         getContentPane().add(mainContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -97,7 +103,13 @@ public class UsandoComponente extends javax.swing.JFrame {
             componenteRelojBeans3.setMinutesAlarm(minuto);
             
             //En caso de que una alarma haya sonado antes, deberemos crear un nuevo receptor
-            componenteRelojBeans3.addDefinirAlarmaListener(new Alarma());
+            
+           //Este código lo he copiado de más arriba del código generado por el propio compilador 
+           //(no entiendo nada de cómo se inicializa :S, pero funciona!)
+            componenteRelojBeans3.addDefinirAlarmaListener(new components.DefinirAlarmaListener() {
+            public void capturarAlarma(components.DefinirAlarmaEvent evt) {
+                componenteRelojBeans3CapturarAlarma(evt);
+            }});
             
         }else{
             System.out.println("El formato de hora introducido no es válido");
@@ -108,6 +120,13 @@ public class UsandoComponente extends javax.swing.JFrame {
     private void switchFormatTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_switchFormatTimeActionPerformed
         componenteRelojBeans3.setFormato24h(!componenteRelojBeans3.isFormato24h());
     }//GEN-LAST:event_switchFormatTimeActionPerformed
+
+    private void componenteRelojBeans3CapturarAlarma(components.DefinirAlarmaEvent evt) {//GEN-FIRST:event_componenteRelojBeans3CapturarAlarma
+        // TODO add your handling code here:
+        System.out.println("Alarmaaaaaaaaaaaaaaaaaaaaaas");
+    JOptionPane.showMessageDialog(null, "RIIIIIIIING RIIIIIIIIIIIIIIIIIIIING", "Alarma",
+    JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_componenteRelojBeans3CapturarAlarma
 
     /**
      * @param args the command line arguments

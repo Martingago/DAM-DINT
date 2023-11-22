@@ -8,5 +8,4 @@ public class DefinirAlarmaEvent extends EventObject {
         super(source);
     }
     
-    
 }

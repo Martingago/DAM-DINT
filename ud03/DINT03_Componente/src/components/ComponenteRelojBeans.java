@@ -24,7 +24,6 @@ public class ComponenteRelojBeans extends JLabel implements Serializable, Action
     public ComponenteRelojBeans() {
         setEnableAlarm(true);
         setFormato24h(false);
-        addDefinirAlarmaListener(new Alarma());
         actualizarHora(); //Se establece el texto inicial antes de iniciar el contador
         timer = new Timer(1000, this);
         timer.start();
@@ -64,7 +63,7 @@ public class ComponenteRelojBeans extends JLabel implements Serializable, Action
             
             if (receptor != null) {
                 receptor.capturarAlarma(new DefinirAlarmaEvent(this));
-                receptor = null; //establecemos el receptor como null para que no salgan mas avisos
+                removeDefinirAlarmaListener(receptor); //establecemos el receptor como null para que no salgan mas avisos
             }
         }
     }
