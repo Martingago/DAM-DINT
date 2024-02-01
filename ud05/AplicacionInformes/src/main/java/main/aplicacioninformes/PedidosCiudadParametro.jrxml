@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.0.final using JasperReports Library version 6.21.0-4f56c4f36cd19e17675219a9ac4692d5f0f13b06  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe4.3.1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4811559-b0bb-4d7b-b5dc-a0945710098f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="fabrica"/>
+	<parameter name="año" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT ciudad, id_pedido, fecha_pedido FROM 
+clientes, pedidos where clientes.ID_Cliente = pedidos.ID_Cliente  
+and year(fecha_pedido)=$P{año} 
+order by ciudad 
+]]>
+	</queryString>
+	<field name="ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Ciudad"/>
+		<property name="com.jaspersoft.studio.field.label" value="ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="id_pedido" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ID_Pedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_pedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="fecha_pedido" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="Fecha_Pedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_pedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<variable name="ciudad1" class="java.lang.Integer" resetType="Group" resetGroup="Ciudad" calculation="Count">
+		<variableExpression><![CDATA[$F{ciudad}]]></variableExpression>
+	</variable>
+	<group name="Ciudad">
+		<groupExpression><![CDATA[$F{ciudad}]]></groupExpression>
+		<groupHeader>
+			<band height="51">
+				<textField>
+					<reportElement x="-1" y="6" width="100" height="20" uuid="10cbbc18-1b4f-4b71-85c0-2632c53e4bf4"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-1" y="0" width="555" height="1" uuid="11c17ec3-9085-4c82-9bc3-5748ab9361b0"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="30" width="100" height="14" uuid="2115cb30-90f2-4c4c-9365-757f6c99adea"/>
+					<text><![CDATA[Número de pedido]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="130" y="30" width="100" height="14" uuid="66b81c72-7e77-4f20-86b5-de632629c3b7"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Fecha de pedido]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<textField>
+					<reportElement x="130" y="5" width="100" height="16" uuid="339aa9c0-71c6-48ea-9038-9a799f126290"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{ciudad1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="-1" y="5" width="120" height="16" uuid="1f18daf7-2f92-489e-9b2c-25545afe4716"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total pedidos ciudad: ]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="10" width="258" height="30" uuid="2d571422-b0e2-41d6-8576-0be18f7185a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado pedidos por ciudades]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="416" y="0" width="139" height="18" uuid="6eee8b7d-9b7c-4fae-96f6-abef3933f9a2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Martín Gago Chorén]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="14" uuid="392fab29-7e88-4a11-ab3c-3a2694e45184">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bc6c3c42-3ac6-4b16-b406-c1eaa25c10df"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="100" height="14" uuid="152ed2e7-5a4d-4dca-b323-95a998f01cdc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1ce47aef-b2e2-4e97-b2e9-4a13020ef898"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha_pedido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
